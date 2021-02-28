@@ -1,0 +1,127 @@
+\documentclass[11pt, twoside, fleqn]{article} % use \documentstyle for old LaTeX compilers
+
+\usepackage[ngerman]{babel} % 'french', 'german', 'spanish', 'danish', etc.
+\usepackage{float}
+\everymath{\displaystyle}
+\usepackage{amsmath,nccmath} 
+\usepackage{anyfontsize}
+
+% Helvetica = Arial for sections
+\usepackage{helvet}
+\fontfamily{Name_OF_Font_Family}\selectfont
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\fontfamily{phv}\selectfont\Large\bfseries}
+  {\thesection}{1em}{}
+
+\usepackage{titlesec}
+\titleformat{\subsection}
+  {\fontfamily{phv}\selectfont\large\bfseries}
+  {\thesubsection}{1em}{}
+  
+\usepackage{titlesec}
+\titleformat{\subsubsection}
+  {\fontfamily{phv}\selectfont\bfseries}
+  {\thesubsubsection}{1em}{}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{rotating} % rotated text for table
+\usepackage{hyperref}
+\usepackage{txfonts}
+\usepackage{mathdots}
+\usepackage[classicReIm]{kpfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{biblatex} 
+\usepackage{csquotes}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+\usepackage{wrapfig}
+\usepackage[justification=centering]{caption}
+
+% New commands
+\newcommand\ub{\underline{b}}
+\newcommand\ux{\underline{x}}
+\newcommand\uX{\underline{X}}
+\newcommand\uy{\underline{y}}
+\newcommand\uY{\underline{Y}}
+\newcommand\uz{\underline{z}}
+\newcommand\uZ{\underline{Z}}
+\newcommand\uzero{\underline{0}}
+
+% Hide subsubsections from the table of contents
+\setcounter{tocdepth}{2}
+
+\setlength\mathindent{0pt}
+\input{insbox}
+
+% set row height 
+\usepackage{stackengine}
+\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+
+%\usepackage[scaled=.90]{helvet}% Helvetica, served as a model for arial
+\usepackage{titlesec}
+ \geometry{
+ a4paper,
+ total={175mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+% caption set
+\usepackage{caption} 
+\captionsetup[table]{justification=raggedright,singlelinecheck = false}
+\DeclareCaptionFormat{myformat}{\fontfamily{phv}\selectfont#1#2#3\par}
+\captionsetup{format=myformat,font=small}
+
+% table set
+\usepackage{xcolor,fancyhdr}
+\usepackage{array,multirow,colortbl}
+\usepackage{multicol}
+ 
+% set fancy header, remove foot number page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\small\thepage}
+\fancyhead[RE]{\small \emph{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\small \emph{\nouppercase{\rightmark}}}
+\setlength{\headheight}{14pt}
+\cfoot{} 
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+% Numbering automatically for sections 
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\usepackage[tablename=Tabelle]{caption}
+\numberwithin{figure}{section}
+\usepackage[figurename=Bild]{caption}
+
+% Matlab listing
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\let\ph\mlplaceholder % shorter macro
+\lstMakeShortInline"
+
+\lstset{
+  style              = Matlab-editor,
+  basicstyle         = \mlttfamily,
+  escapechar         = ",
+  mlshowsectionrules = true,
+    literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}2
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+}
+
+% Change Inhalt's word
+\renewcommand*\contentsname{Inhalt}

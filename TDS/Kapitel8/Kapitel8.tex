@@ -1,0 +1,299 @@
+\noindent In Kapitel \ref{four} und \ref{six} werden Systeme im Zeit- und Bildbereich behandelt. Es wird gezeigt, wie Systemantworten berechnet werden k\"{o}nnen. Au{\ss}erdem wird das Verhalten der Systeme mit Hilfe von \"{U}bertragungsfunktionen beschrieben.\newline
+
+\noindent Die Fourier-Transformation f\"{u}r zeitkontinuierliche Signale und Systeme erm\"{o}glicht es, die \"{A}nderung des Spektrums eines Signals beim Durchlaufen eines dynamischen Systems zu beschreiben. Die \"{A}nderung kann durch die Multiplikation des Spektrums vom Eingangssignal mit dem Frequenzgang des Systems beschrieben werden. Dieser Zusammenhang wird auf verschiedene Arten auch f\"{u}r zeitdiskrete Systeme hergeleitet.\newline 
+
+\noindent Der Frequenzgang eines zeitdiskreten Systems kann wie bei zeitkontinuierlichen Systemen mit Ortskurven, Frequenzgangkennlinien und Bode-Diagrammen beschrieben werden. Alle Darstellungsformen werden eingef\"{u}hrt, wobei sich die Darstellungen im Wesentlichen auf Frequenzgangskennlinien und Bode-Diagramme konzentrieren. \newline
+
+\noindent Besonders anschauliche Darstellungen von Frequenzgangkennlinien ergeben sich f\"{u}r Systeme mit gebrochen rationalen \"{U}bertragungsfunktionen. F\"{u}r die Darstellung der zugeh\"{o}rigen Frequenzgangskennlinien k\"{o}nnen die \"{U}bertragungsfunktionen in Linearfaktoren zerlegt werden. Damit l\"{a}sst sich der Frequenzgang eines Systems auf die Summe der logarithmierten Amplituden- und Phaseng\"{a}nge von Linearfaktoren zur\"{u}ckf\"{u}hren. Dieses Verfahren wird vorgestellt und an Beispielen vertieft.\newline
+
+\noindent Systeme mit endlicher Impulsantwort (FIR-Systeme) weisen oft eine Symmetrie auf, die das Berechnen des Frequenzgangs vereinfacht. Erf\"{u}llt die Symmetrie bestimmte Anforderungen, wird der Phasengang von FIR-Systemen linear. Die Anforderungen werden analysiert und Vorteile eines linearen Phasengangs werden an Beispielen verdeutlicht.\newline
+
+\noindent Das Kapitel schlie{\ss}t mit \"{U}bungsaufgaben zum Frequenzgang zeitdiskreter Systeme. Diese \"{U}bungsaufgaben verdeutlichen den Zusammenhang zwischen Zeitbereich, Bildbereich und Frequenzbereich.
+
+\subsection{Motivation und Herleitung}\label{eightone}
+
+\noindent Der Begriff des Frequenzgangs eines zeitdiskreten Systems kann auf unterschiedlichen Wegen erkl\"{a}rt werden. Um das Wissen aus zeitkontinuierlichen Systemen, der Systembeschreibung im Zeit- und im z-Bereich sowie die Fourier-Transformation von Signalfolgen miteinander zu vernetzen, werden an dieser Stelle unterschiedliche Motivationen und Herleitungen vorgestellt. 
+
+\subsubsection{Berechnung des Frequenzgangs aus der Differenzengleichung eines Systems}\label{eightoneone}
+
+\noindent Ausgangspunkt f\"{u}r die Herleitung des Frequenzgangs eines Systems ist die Differenzengleichung
+
+\begin{equation}\label{eq:eightone}
+\sum _{n=0}^{N}c_{n} \cdot y\left[k-n\right] =\sum _{m=0}^{M}d_{m} \cdot u\left[k-m\right]
+\end{equation}
+
+\noindent Mit der Verschiebungsregel der Fourier-Transformation f\"{u}r Signalfolgen kann die Gleichung in den Frequenzbereich transformiert werden:
+
+\begin{equation}\label{eq:eighttwo}
+\sum _{n=0}^{N}c_{n} \cdot Y\left(\Omega \right)\cdot e^{-j\cdot \Omega \cdot n}  =\sum _{m=0}^{M}d_{m} \cdot U\left(\Omega \right)\cdot e^{-j\cdot \Omega \cdot m}
+\end{equation}
+
+\noindent Durch Ausklammern von U($\Omega$) und Y($\Omega$) ergibt sich 
+
+\begin{equation}\label{eq:eightthree}
+G\left(\Omega \right)=\frac{Y\left(\Omega \right)}{U\left(\Omega \right)} =\frac{\sum _{m=0}^{M}d_{m} \cdot e^{-j\cdot \Omega \cdot m}}{\sum _{n=0}^{N}c_{n} \cdot e^{-j\cdot \Omega \cdot n}}
+\end{equation}
+
+\noindent Die resultierende Funktion G($\Omega$) wird als Frequenzgang des Systems bezeichnet. In Abschnitt 8.1.3 wird sich zeigen, dass der Frequenzgang G($\Omega$) f\"{u}r kausale und stabile Systeme gleichzeitig die Fourier-Transformierte der Impulsantwort g[k] ist.\bigskip
+
+\noindent
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\renewcommand\arraystretch{0.6}%
+\begin{tabular}{ wl{16.5cm} }
+{\fontfamily{phv}\selectfont{Beispiel: Rekursives Tiefpass-Filter}}
+\end{tabular}%
+}\medskip
+
+\noindent Das Vorgehen wird am Beispiel eines rekursiven Tiefpassfilters verdeutlicht. Die Transformation der Differenzengleichung 
+
+\begin{equation}\label{eq:eightfour}
+y\left[k\right]-GF\cdot y\left[k-1\right]=\left(1-GF\right)\cdot u\left[k\right]
+\end{equation}
+
+\noindent in den Frequenzbereich f\"{u}hrt mit 0 $\mathrm{<}$ GF $\mathrm{<}$ 1 zu der Gleichung
+
+\begin{equation}\label{eq:eightfive}
+Y\left(\Omega \right)-GF\cdot Y\left(\Omega \right)\cdot e^{-j\cdot \Omega } =\left(1-GF\right)\cdot U\left(\Omega \right)
+\end{equation}
+
+\noindent Ein Aufl\"{o}sen der Gleichung f\"{u}hrt zu der \"{U}bertragungsfunktion 
+
+\begin{equation}\label{eq:eightsix}
+G\left(\Omega \right)=\frac{Y\left(\Omega \right)}{U\left(\Omega \right)} =\frac{1-GF}{1-GF\cdot e^{-j\cdot \Omega}}
+\end{equation}
+
+\noindent Der Frequenzgang wird im Abschnitt 8.2 dargestellt und interpretiert. 
+
+\subsubsection{Berechnung des Frequenzgangs aus der \"{U}bertragungsfunktion G(z) eines Systems}
+
+\noindent Die Berechnung der \"{U}bertragungsfunktion G($\Omega$) wird in Abschnitt \ref{eightoneone} formal genauso durchgef\"{u}hrt wie die Berechnung der \"{U}bertragungsfunktion im z-Bereich. Ein Vergleich der Fourier- und der z-Transformierten der Differenzengleichung 
+
+\begin{equation}\label{eq:eightseven}
+\sum _{n=0}^{N}c_{n} \cdot Y\left(z\right)\cdot z^{-n}  =\sum _{m=0}^{M}d_{m} \cdot U\left(z\right)\cdot z^{-m}
+\end{equation}
+
+\noindent zeigt, dass die beiden Transformierten und damit auch die beiden \"{U}bertragungsfunktionen \"{u}bereinstimmen, wenn die Variable z durch den Ausdruck e${}^{j\cdot \Omega}$ substituiert wird. Aus Kapitel 7.3.2 ist bekannt, dass diese Substitution nur dann durchgef\"{u}hrt werden darf, wenn der Einheitskreis im Konvergenzbereich der z-Transformierten G(z) liegt. Das ist bei asymptotisch stabilen Systemen der Fall, sodass f\"{u}r asymptotisch stabile Systeme gilt: 
+
+\begin{equation}\label{eq:eighteight}
+G\left(\Omega \right)=\left. G\left(z\right)\right|_{z=e^{j\cdot \Omega } }
+\end{equation}
+
+\clearpage
+
+\noindent
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\renewcommand\arraystretch{0.6}%
+\begin{tabular}{ wl{16.5cm} }
+{\fontfamily{phv}\selectfont{Beispiel: Rekursives Tiefpass-Filter}}
+\end{tabular}%
+}\medskip
+
+\noindent Das rekursive Tiefpass-Filter hat im z-Bereich die \"{U}bertragungsfunktion
+
+\begin{equation}\label{eq:eightnine}
+G\left(z\right)=\frac{1-GF}{1-GF\cdot z^{-1}}
+\end{equation}
+
+\noindent Der Pol der \"{U}bertragungsfunktion G(z) liegt an der Stelle
+
+\begin{equation}\label{eq:eightten}
+\alpha =GF
+\end{equation}
+
+\noindent F\"{u}r 0 $\mathrm{<}$ GF $\mathrm{<}$ 1 liegt der Pol innerhalb des Einheitskreises. Da in diesem Fall das System stabil ist, ergibt sich f\"{u}r diesen Fall der Frequenzgang des Systems zu
+
+\begin{equation}\label{eq:eighteleven}
+G\left(\Omega \right)=\left. G\left(z\right)\right|_{z=e^{j\cdot \Omega } } =\frac{1-GF}{1-GF\cdot e^{-j\cdot \Omega}}
+\end{equation}
+
+\subsubsection{Faltungsregel der Fourier-Transformation von Signalfolgen}
+
+\noindent Bei der Beschreibung von zeitdiskreten Systemen wird das Ausgangssignal y[k] eines Systems \"{u}ber die Faltung von Eingangssignal u[k] und Impulsantwort g[k] berechnet.
+
+\begin{equation}\label{eq:eighttwelve}
+y\left[k\right]=g\left[k\right]*u\left[k\right]=u\left[k\right]*g\left[k\right]
+\end{equation}
+
+\noindent Mit der Faltungsregel der Fourier-Transformation ergibt sich im Frequenzbereich der Zusammenhang
+
+\begin{equation}\label{eq:eightthirteen}
+Y\left(\Omega \right)=G\left(\Omega \right)\cdot U\left(\Omega \right)=U\left(\Omega \right)\cdot G\left(\Omega \right)
+\end{equation}
+
+\noindent Das Spektrum Y($\Omega$) des Ausgangssignals y[k] errechnet sich aus dem Produkt der Spektren der Impulsantwort G($\Omega$) und des Spektrums des Eingangssignals U($\Omega$). Charakteristisch f\"{u}r das System ist die \"{U}bertragungsfunktion G($\Omega$), die sich aus dem Quotienten der Fourier-Transformierten von Aus- und Eingangssignal ergibt.
+
+\begin{equation}\label{eq:eightfourteen}
+G\left(\Omega \right)=\frac{Y\left(\Omega \right)}{U\left(\Omega \right)}
+\end{equation}
+
+\noindent Sie entspricht gem\"{a}{\ss} der obigen Herleitung der Fourier-Transformierten der Impulsantwort g[k].\bigskip
+
+\noindent
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\renewcommand\arraystretch{0.6}%
+\begin{tabular}{ wl{16.5cm} }
+{\fontfamily{phv}\selectfont{Beispiel: Rekursives Tiefpass-Filter}}
+\end{tabular}%
+}\medskip
+
+\noindent F\"{u}r ein rekursives Filter mit der Differenzengleichung
+
+\begin{equation}\label{eq:eightfifteen}
+y\left[k\right]-GF\cdot y\left[k-1\right]=\left(1-GF\right)\cdot u\left[k\right]
+\end{equation}
+
+\noindent ergibt sich f\"{u}r 0 $\mathrm{<}$ GF $\mathrm{<}$ 1 die gegen null konvergierende Impulsantwort
+
+\begin{equation}\label{eq:eightsixteen}
+g\left[k\right]=GF^{k} \cdot \sigma \left[k\right]
+\end{equation}
+
+\clearpage
+
+\noindent Aus der Impulsantwort wird mit den Rechenregeln der Fourier-Transformation der Frequenzgang bestimmt zu
+
+\begin{equation}\label{eq:eightseventeen}
+G\left(\Omega \right)=\frac{1-GF}{1-GF\cdot e^{-j\cdot \Omega }}
+\end{equation}
+
+\noindent Alle Wege, den Frequenzgang des rekursiven Filters zu beschreiben, f\"{u}hren damit zu demselben Ergebnis.
+
+\subsubsection{Reaktion zeitdiskreter Systeme auf eine kausale, harmonische Anregung}
+
+\noindent Bei zeitkontinuierlichen, kausalen Systemen wird gezeigt, dass ein System bei Anregung mit einer kausalen harmonischen Anregung mit einem Signal antwortet, das sich aus einem Einschwingvorgang und einer harmonischen Antwort gleicher Frequenz zusammensetzt. Dieser Gedanke wird an dieser Stelle aufgegriffen und auf zeitdiskrete Systeme angewendet. Dazu wird zun\"{a}chst die Systemreaktion auf ein Eingangssignal u${}_{1}$[k] der Form 
+
+\begin{equation}\label{eq:eighteightteen}
+u_{1} \left[k\right]=e^{j\cdot \Omega \cdot k} \cdot \sigma \left[k\right]
+\end{equation}
+
+\noindent berechnet. Da das System und die Eingangsfolge kausal sind, ist die Ausgangsfolge f\"{u}r k $\mathrm{<}$ 0 null. F\"{u}r k $\mathrm{\ge}$ 0 ergibt sich die Ausgangsfolge aus einer endlichen Faltungssumme.
+
+\begin{equation}\label{eq:eightnineteen}
+y_{1} \left[k\right]=g\left[k\right]*u_{1} \left[k\right]=\sum _{\kappa =-\infty }^{\infty }g\left[\kappa \right] \cdot u_{1} \left[k-\kappa \right]=\sum _{\kappa =0}^{k}g\left[\kappa \right] \cdot e^{j\cdot \Omega \cdot \left(k-\kappa \right)} =e^{j\cdot \Omega \cdot k} \cdot \sum _{\kappa =0}^{k}g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \kappa }
+\end{equation}
+
+\noindent Um auf die Gleichungen f\"{u}r die Fourier-Transformation zu kommen, wird die Summe erweitert:
+
+\begin{equation}\label{eq:eighttwenty}
+\begin{split}
+y_{1} \left[k\right] & =e^{j\cdot \Omega \cdot k} \cdot \sum _{\kappa =0}^{k}g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \kappa } =e^{j\cdot \Omega \cdot k} \cdot \sum _{\kappa =0}^{\infty }g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \kappa } \cdot \sigma \left[k\right]-e^{j\cdot \Omega \cdot k} \cdot \sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \kappa } \cdot \sigma \left[k\right] \\ 
+&=e^{j\cdot \Omega \cdot k} \cdot G\left(\Omega \right)\cdot \sigma \left[k\right]-e^{j\cdot \Omega \cdot k} \cdot \sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \kappa } \cdot \sigma \left[k\right]
+\end{split}
+\end{equation}
+
+\noindent Analog ergibt sich f\"{u}r die Eingangsfolge 
+
+\begin{equation}\label{eq:eighttwentyone}
+u_{2} \left[k\right]=e^{-j\cdot \Omega \cdot k} \cdot \sigma \left[k\right]
+\end{equation}
+
+\noindent die Ausgangsfolge 
+
+\begin{equation}\label{eq:eighttwentytwo}
+\begin{split}
+y_{2} \left[k\right] & =e^{-j\cdot \Omega \cdot k} \cdot \sum _{\kappa =0}^{k}g\left[n\right] \cdot e^{j\cdot \Omega \cdot \kappa } =e^{-j\cdot \Omega \cdot k} \cdot \sum _{\kappa =0}^{\infty }g\left[\kappa \right] \cdot e^{j\cdot \Omega \cdot \kappa } \cdot \sigma \left[k\right]-e^{-j\cdot \Omega \cdot k} \cdot \sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{j\cdot \Omega \cdot \kappa } \cdot \sigma \left[k\right]\\ 
+& =e^{-j\cdot \Omega \cdot k} \cdot G\left(-\Omega \right)\cdot \sigma \left[k\right]-e^{-j\cdot \Omega \cdot k} \cdot \sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{j\cdot \Omega \cdot \kappa } \cdot \sigma \left[k\right]
+\end{split}
+\end{equation}
+
+\noindent Mit der Eulerschen Formel kann damit die Systemreaktion auf eine kausale, harmonische Anregung der Form
+
+\begin{equation}\label{eq:eighttwentythree}
+u\left[k\right]=A\cdot \cos \left(\Omega \cdot k\right)\cdot \sigma \left[k\right]=\frac{A}{2} \cdot \left(e^{j\cdot \Omega \cdot k} +e^{-j\cdot \Omega \cdot k} \right)\cdot \sigma \left[k\right]
+\end{equation}
+
+\noindent berechnet werden. Es ergibt sich die Folge
+
+\begin{equation}\label{eq:eighttwentyfour}
+\begin{split}
+y\left[k\right] & =\frac{A}{2} \cdot \left(e^{j\cdot \Omega \cdot k} \cdot G\left(\Omega \right)-e^{j\cdot \Omega \cdot k} \cdot \sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \kappa } \right)\cdot \sigma \left[k\right] \\ 
+& +\frac{A}{2} \cdot \left(e^{-j\cdot \Omega \cdot k} \cdot G\left(-\Omega \right)-e^{-j\cdot \Omega \cdot k} \cdot \sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{j\cdot \Omega \cdot \kappa } \right)\cdot \sigma \left[k\right] \\
+& =\frac{A}{2} \cdot \left(e^{j\cdot \Omega \cdot k} \cdot G\left(\Omega \right)+e^{-j\cdot \Omega \cdot k} \cdot G\left(-\Omega \right)\right)\cdot \sigma \left[k\right]\\ 
+& -\frac{A}{2} \cdot \left(\sum _{n=k+1}^{\infty }g\left[n\right] \cdot e^{j\cdot \Omega \cdot \left(k-n\right)} +\sum _{n=k+1}^{\infty }g\left[n\right] \cdot e^{-j\cdot \Omega \cdot \left(k-n\right)} \right)\cdot \sigma \left[k\right]
+\end{split}
+\end{equation}
+
+\noindent Aufgrund der Symmetrieregeln der Fourier-Transformation ist 
+
+\begin{equation}\label{eq:eighttwentyfive}
+G\left(-\Omega \right)=\left|G\left(\Omega \right)\right|\cdot e^{-j\cdot \varphi \left(\Omega \right)}
+\end{equation}
+
+\noindent und y[k] kann vereinfacht werden zu
+
+\begin{equation}\label{eq:eighttwentysix}
+\begin{split}
+y\left[k\right] & =\frac{A}{2} \cdot \left|G\left(\Omega \right)\right|\cdot \left(e^{j\cdot \Omega \cdot k} \cdot e^{j\cdot \varphi \left(\Omega \right)} +e^{-j\cdot \Omega \cdot k} \cdot e^{-j\cdot \varphi \left(\Omega \right)} \right)\cdot \sigma \left[k\right]\\ 
+& -\frac{A}{2} \cdot \left(\sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{j\cdot \Omega \cdot \left(k-\kappa \right)} +\sum _{\kappa =k+1}^{\infty }g\left[\kappa \right] \cdot e^{-j\cdot \Omega \cdot \left(k-\kappa \right)} \right)\cdot \sigma \left[k\right]\\
+&=A\cdot \left|G\left(\Omega \right)\right|\cdot \cos \left(\Omega \cdot k+\varphi \left(\Omega \right)\right)\cdot \sigma \left[k\right]-A\cdot \left(\sum _{n=k+1}^{\infty }g\left[n\right] \cdot \cos \left(\Omega \cdot \left(k-n\right)\right)\right)\cdot \sigma \left[k\right]
+\end{split}
+\end{equation}
+
+\noindent Der erste Term beschreibt die Systemreaktion auf die harmonische Anregung. Sie besitzt die gleiche Frequenz wie das Eingangssignal. Die Amplitude wird mit dem Betrag des Frequenzgangs {\textbar}G($\Omega$){\textbar} multipliziert, die Phase \"{a}ndert sich gegen\"{u}ber dem Eingangssignal um die Phase des Frequenzgangs $\varphi$($\Omega$). Der zweite Term beschreibt das Einschwingen des Systems. Bei stabilen Systemen konvergiert die Impulsantwort g[k] f\"{u}r k $\rightarrow$ $\infty$ gegen null, sodass der zweite Summand bei stabilen Systemen gegen null geht. Damit gelten f\"{u}r zeitdiskrete Systeme bez\"{u}glich der Reaktion des Systems auf kausale, harmonische Anregungen dieselben Gesetzm\"{a}{\ss}igkeiten wie bei zeitkontinuierlichen Systemen.
+
+\clearpage
+
+\subsection{Grafische Darstellung des Frequenzgangs}
+
+\noindent An dem Frequenzgang kann das Amplitudenverh\"{a}ltnis von Ein- und Ausgangssignal sowie die Phasenverschiebung als Funktion der normierten Kreisfrequenz $\Omega$ abgelesen werden. Die Beschreibung des Frequenzgangs erfolgt \"{u}ber den Amplitudengang und den Phasengang von Systemen. Sie werden in diesem Abschnitt berechnet und interpretiert. Der Frequenzgang zeitdiskreter Systeme entspricht der Fourier-Transformierten der Impulsantwort.
+
+\begin{equation}\label{eq:eighttwentyseven}
+G\left(\Omega \right)=\sum _{k=-\infty }^{\infty }g\left[k\right]\cdot e^{-j\cdot k\cdot \Omega }
+\end{equation}
+
+\noindent Wegen der Periodizit\"{a}t der Exponentialfunktion mit imagin\"{a}rem Argument ist jeder Summand der Summe in Gleichung \eqref{eq:eighttwentyseven} periodisch in 2$\mathrm{\bullet}\piup$. Damit ist der Frequenzgang eines zeitdiskreten Systems analog zu dem Spektrum von Signalfolgen periodisch in 2$\mathrm{\bullet}\piup$. Deshalb ist es ausreichend, den Frequenzgang in einem Bereich von - $\piup$ {\dots} + $\piup$ darzustellen. Der Frequenzgang kann in kartesischen Koordinaten oder Polar-Koordinaten dargestellt werden. Bei der Darstellung in kartesischen Koordinaten wird der Frequenzgang in Realteil G${}_{R}$($\Omega$) und Imagin\"{a}rteil G${}_{I}$($\Omega$) zerlegt. Bei der Darstellung in Polarkoordinaten wird der Frequenzgang mit Betrag {\textbar}G($\Omega$){\textbar} und Phase $\varphi$($\Omega$) dargestellt.
+
+\begin{equation}\label{eq:eighttwentyeight}
+G\left(\Omega \right)=G_{R} \left(\Omega \right)+j\cdot G_{I} \left(\Omega \right)=\left|G\left(\Omega \right)\right|\cdot e^{j\cdot \varphi \left(\Omega \right)} =A\left(\Omega \right)\cdot e^{j\cdot \varphi \left(\Omega \right)}
+\end{equation}
+
+\noindent Der Betrag der \"{U}bertragungsfunktion A($\Omega$) wird als Amplitudengang und die Phase der \"{U}bertragungsfunktion $\varphi$($\Omega$) wird als Phasengang bezeichnet. Analog zu den Darstellungen des Frequenzgangs zeitkontinuierlicher Signale kann der Frequenzgang von Signalfolgen entweder als Ortskurve oder als Frequenzgangskennlinie dargestellt werden.
+
+\subsubsection{Ortskurven}
+
+\noindent Bei der Ortskurve wird der Frequenzgang in der komplexen Ebene abgebildet. Dazu werden f\"{u}r unterschiedliche Frequenzen - $\pi$ $\mathrm{\le}$ $\Omega$ $\mathrm{\le}$ $\pi$ Real- und Imagin\"{a}rteil des Frequenzgangs bestimmt und die entsprechenden Punkte in die komplexe Ebene eingezeichnet. \bigskip
+
+\noindent
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\renewcommand\arraystretch{0.6}%
+\begin{tabular}{ wl{16.5cm} }
+{\fontfamily{phv}\selectfont{Beispiel: Rekursives Tiefpass-Filter}}
+\end{tabular}%
+}\medskip
+
+\noindent In Kapitel \ref{eightone} wird der Frequenzgang des rekursiven Tiefpasses erster Ordnung mit 0 $\mathrm{<}$ GF $\mathrm{<}$ 1 berechnet.
+
+\begin{equation}\label{eq:eighttwentynine}
+G\left(\Omega \right)=\frac{1-GF}{1-GF\cdot e^{-j\cdot \Omega } }
+\end{equation}
+
+\noindent Der Frequenzgang kann durch eine konjugiert komplexe Erweiterung in Real- und Imagin\"{a}rteil aufgeteilt werden.
+
+\begin{equation}\label{eq:eightthirty}
+\begin{split}
+G\left(\Omega \right) & =\frac{1-GF}{1-GF\cdot e^{-j\cdot \Omega } } =\frac{1-GF}{1-GF\cdot \cos \left(\Omega \right)+j\cdot GF\cdot \sin \left(\Omega \right)} \\ 
+& =\left(1-GF\right)\cdot \frac{1-GF\cdot \cos \left(\Omega \right)-j\cdot GF\cdot \sin \left(\Omega \right)}{\left(1-GF\cdot \cos \left(\Omega \right)\right)^{2} +GF^{2} \cdot \sin ^{2} \left(\Omega \right)} \\ 
+& =\left(1-GF\right)\cdot \frac{1-GF\cdot \cos \left(\Omega \right)}{1+GF^{2} -2\cdot GF\cdot \cos \left(\Omega \right)} -j\cdot \left(1-GF\right)\cdot \frac{GF\cdot \sin \left(\Omega \right)}{1+GF^{2} -2\cdot GF\cdot \cos \left(\Omega \right)}
+\end{split}
+\end{equation}
+
+\noindent Alternativ kann der Frequenzgang in Polarkoordinaten dargestellt werden, es ergibt sich der Betrag
+
+\begin{equation}\label{eq:eightthirtyone}
+A\left(\Omega \right)=\left|G\left(\Omega \right)\right|=\left|\frac{1-GF}{1-GF\cdot \cos \left(\Omega \right)+j\cdot GF\cdot \sin \left(\Omega \right)} \right|=\frac{1-GF}{\sqrt{1+GF^{2} -2\cdot GF\cdot \cos \left(\Omega \right)}}
+\end{equation}
+
+\noindent und die Phase
+
+\begin{equation}\label{eq:eightthirtytwo}
+\begin{split}
+\varphi \left(\Omega \right)& =\varphi _{Z} \left(\Omega \right)-\varphi _{N} \left(\Omega \right)=\arctan \left(\frac{Im(Z)}{Re(Z)} \right)-\arctan \left(\frac{Im(N)}{Re(N)} \right)\\ 
+& =\arctan \left(\frac{0}{1-GF} \right)-\arctan \left(\frac{GF\cdot \sin \left(\Omega \right)}{1-GF\cdot \cos \left(\Omega \right)} \right)=-\arctan \left(\frac{GF\cdot \sin \left(\Omega \right)}{1-GF\cdot \cos \left(\Omega \right)} \right)
+\end{split}
+\end{equation}
+
+\noindent F\"{u}r den Frequenzbereich - $\pi$ $\mathrm{\le}$ $\Omega$ $\mathrm{\le}$ $\pi$ ergeben sich f\"{u}r GF = 0.5 und GF = 0.9 folgende Ortskurven.

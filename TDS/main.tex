@@ -1,0 +1,61 @@
+\input{preamble.tex}
+\begin{document}
+\thispagestyle{empty} % remove the header
+\input{frontpage.tex}
+\newpage
+
+\thispagestyle{empty}
+\section*{Änderungsindex}
+\input{Anderungsindex}
+\newpage
+\pagenumbering{Roman}
+\thispagestyle{empty}
+%\pagenumbering{gobble} %Page numbering empty
+\tableofcontents
+
+\newpage
+
+\thispagestyle{empty} % empty
+\mbox{}
+
+\pagenumbering{arabic}
+
+\section{Einleitung}
+\input{Einleitung/Einleitung}
+
+\clearpage
+
+\section{Signalabtastung und Rekonstruktion}\label{two}
+\input{Kapitel1/Kapitel1}
+
+\clearpage
+
+\section{Zeitdiskrete Signale}
+\input{Kapitel3/Kapitel3}
+
+\clearpage
+
+\section{Zeitdiskrete Systeme im Zeitbereich}\label{four}
+\input{Kapitel4/Kapitel4}
+
+\clearpage
+
+\section{z-Transformation von Signalen}
+\input{Kapitel5/Kapitel5}
+
+\clearpage
+
+\section{Zeitdiskrete Systeme im z-Bereich}\label{six}
+\input{Kapitel6/Kapitel6}
+
+\clearpage
+
+\section{Spektrum von Signalfolgen}
+\input{Kapitel7/Kapitel7}
+
+\clearpage
+
+\section{Frequenzgang zeitdiskreter Systeme}
+\input{Kapitel8/Kapitel8}
+
+\end{document}

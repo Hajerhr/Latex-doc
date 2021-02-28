@@ -1,0 +1,653 @@
+\subsection{Matrizenalgebra}
+
+\noindent In vielen multivariaten Fragestellungen in der Statistik wird Matrixalgebra ben\"{o}tigt. Insbesondere werden bei der multiple Regression die Variablen in einer sogenannten Design-Matrix X zusammengefasst. Sie hat M Zeilen, die die Anzahl der Beobachtungen repr\"{a}sentiert, und N Spalten, die die Anzahl der an der Regression beteiligten Variablen repr\"{a}sentiert. Ein Eintrag dieser Matrix entspricht der Messung eines Merkmals bei einer Beobachtung. Eine Zeile der Matrix enth\"{a}lt die Messergebnisse aller Merkmale f\"{u}r eine Beobachtung. Die Werte der Zielgr\"{o}{\ss}e werden in einem M-dimensionalen Vektor Y zusammengefasst. Damit gilt die Gleichung
+
+\begin{equation}\label{eq:fifteenone}
+\uX \cdot B = Y
+\end{equation}
+
+\noindent Es wird sich zeigen, dass zur Sch\"{a}tzung des Regressionskoeffizienten die Gleichung
+
+\begin{equation}\label{eq:fifteentwo}
+B = (\uX^{T}\cdot \uX)^{-1}\cdot \uX^{T}\cdot Y
+\end{equation}
+
+\noindent gel\"{o}st werden muss. Zur Berechnung werden also Matrixmultiplikation, die Inverse einer Matrix und die Transponierte einer Matrix ben\"{o}tigt. Auch in vielen anderen Anwendungen in der Statistik ist die Matrixalgebra von zentraler Bedeutung. Die folgenden Abschnitte stellen die wesentlichen Rechenregeln der Matrixalgebra zusammen.
+
+\subsubsection{Vektoren und Matrizen}
+
+\noindent Ein Vektor X ist eine Anordnung von Elementen in einer Spalte mit M Zeilen. 
+
+\begin{equation}\label{eq:fifteenthree}
+X = \begin{pmatrix} 
+    X_{1} \\ 
+    X_{2} \\
+    \vdots\\ 
+    X_{M} \\ 
+\end{pmatrix}
+\end{equation}
+
+\noindent Ein Zeilenvektor $X^{T}$ ist eine Anordnung von Elementen in einer Zeile mit N Spalten.
+
+\begin{equation}\label{eq:fifteenfour}
+X^{T}=(X_{1}\;X_{1}\; \dots X_{N})
+\end{equation}
+
+\noindent Eine Matrix $\uX$ ist eine rechteckf\"{o}rmige Anordnung von Elementen mit M Zeilen und N Spalten. Stimmt die Anzahl von Zeilen M und die Anzahl von Spalten N \"{u}berein, wird sie als quadratische Matrix bezeichnet. 
+
+\begin{equation}\label{eq:fifteenfive}
+X=
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1N}\\
+X_{21} & X_{22} & \dots & X_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1} & X_{M2} & \dots & X_{MN}\\
+\end{pmatrix}
+\end{equation}
+
+\noindent Matrizen k\"{o}nnen aus verschiedenen Spaltenvektoren $X_{1} \dots X_{N}$ zusammengesetzt werden. Alternativ k\"{o}nnen sie als Spaltenvektoren $X_{1}^{T} \dots X_{M}^{T}$ zusammengesetzt werden.
+
+\begin{equation}\label{eq:fifteensix}
+X=
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1N}\\
+X_{21} & X_{22} & \dots & X_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1} & X_{M2} & \dots & X_{MN}\\
+\end{pmatrix}
+= (X_{1} \dots X_{N}) = 
+\begin{pmatrix}
+X_{1}^{T}\\
+\vdots\\
+X_{M}^{T}\\
+\end{pmatrix}
+\end{equation}
+
+\noindent Die Transponierte $\uX^{T}$ einer Matrix $\uX$ entsteht durch Vertauschen von Zeilen und Spalten der Matrix $\uX$.
+
+\begin{equation}\label{eq:fifteenseven}
+X=
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1N}\\
+X_{21} & X_{22} & \dots & X_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1} & X_{M2} & \dots & X_{MN}\\
+\end{pmatrix} ^{T}
+= 
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1M}\\
+X_{21} & X_{22} & \dots & X_{2M}\\
+\dots & \dots & \dots & \dots\\
+X_{N1} & X_{N2} & \dots & X_{NM}\\
+\end{pmatrix}
+\end{equation}
+
+\noindent F\"{u}r das Transponieren von Matrizen gelten die in Tabelle \ref{tab:fifteenone} zusammengefassten Rechenregeln.
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r das Transponieren von Matrizen}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| wc{8.2cm} | wc{8.2cm} }
+\xrowht{15pt}
+
+\fontfamily{phv}\selectfont\textbf{Regel} & 
+\fontfamily{phv}\selectfont\textbf{Gleichung}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Doppeltes Transponieren} &
+\fontfamily{phv}\selectfont{$\left(\uX^{T}\right)^{T}=\uX$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Transonieren einer Summe von Matrizen} &
+\fontfamily{phv}\selectfont{$(\uX+\uY)^{T} =\uX^{T}+\uY^{T} $}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Transponieren des Produktes von Matrizen} &
+\fontfamily{phv}\selectfont{$(\uX\cdot \uY)^{T} =\uX^{T}\cdot \uY^{T} $}\\ \hline
+
+\end{tabular}%
+}\bigskip
+\label{tab:fifteenone}
+\end{table}
+
+\noindent F\"{u}r das Rechnen mit Matrizen sind einige Matrizen von besonderer Bedeutung. Sie sind Tabelle \ref{tab:fifteentwo} zusammengefasst.
+
+\clearpage
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Matrizen mit besinderer Bedeutung}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| c | c |}
+\hline
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Befehl}}} & 
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Beschreibung}}}\\ \hline
+
+\parbox[c][1in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Nullmatrix }}} &
+\parbox[c][1in][c]{3.2in}{\centering{$\uzero =  
+\begin{pmatrix}
+0 & 0 & \dots & 0\\
+0 & 0 & \dots & 0\\
+\dots & \dots & \dots & \dots \\
+0 & 0 & \dots & 0\\
+\end{pmatrix}$}}\\ \hline
+
+\parbox[c][1in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Matrix mit Einsen}}} & 
+\parbox[c][1in][c]{3.2in}{\centering{$\underbar{J} =  
+\begin{pmatrix}
+1 & 1 & \dots & 1\\
+1 & 1 & \dots & 1\\
+\dots & \dots & \dots & \dots \\
+1 & 1 & \dots & 1
+\end{pmatrix}$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{n-ter Einheitsvektor}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$E_{n}=(0, \dots, 1, \dots, 0)$}}\\ \hline
+
+\parbox[c][1in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Diagonalmatrix}}} &
+\parbox[c][1in][c]{3.2in}{\centering{$\uX=diag(x_{11} \dots x_{NN}) = 
+\begin{pmatrix}
+x_{11} & 0 & \dots & 0\\
+0 & x_{22} & \dots & 0\\
+\dots & \dots & \dots & \dots \\
+0 & 0 & \dots & x_{NN}
+\end{pmatrix}$}}\\ \hline
+
+\parbox[c][1in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Einheitsmatrix}}} &
+\parbox[c][1in][c]{3.2in}{\centering{$\underbar{I}=
+\begin{pmatrix}
+1 & 0 & \dots & 0\\
+0 & 1 & \dots & 0\\
+\dots & \dots & \dots & \dots \\
+0 & 0 & \dots & 1
+\end{pmatrix}$}}\\ \hline
+
+\end{tabular}%
+}
+\label{tab:fifteentwo}
+\end{table}
+
+\noindent Eine Matrix kann aus Teilmatrizen unterteilt oder partitioniert werden. 
+
+\begin{equation}\label{eq:fifteeneight}
+\uX =
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1N}\\
+X_{21} & X_{22} & \dots & X_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1} & X_{M2} & \dots & X_{MN}\\
+\end{pmatrix} =
+\begin{pmatrix}
+\uX_{11} & \uX_{12}\\
+\uX_{21} & \uX_{22}\\
+\end{pmatrix} 
+\end{equation}
+
+\noindent Bei Transponieren der Matrizen gilt f\"{u}r partitionierte Matrizen:
+
+\begin{equation}\label{eq:fifteennine}
+\uX^{T} =
+\begin{pmatrix}
+\uX_{11} & \uX_{12}\\
+\uX_{21} & \uX_{22}\\
+\end{pmatrix}^{T} =
+\begin{pmatrix}
+\uX_{11}^{T} & \uX_{12}^{T}\\
+\uX_{21}^{T} & \uX_{22}^{T}\\
+\end{pmatrix}
+\end{equation}
+
+\clearpage
+
+\subsubsection{Matrizenoperationen}
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Addition von Matrizen}\smallskip
+
+\noindent Die Summe $\uX + \uY$ zweier M x N Matrizen berechnet sich aus dem komponentenweise Addition der einzelnen Elemente.
+
+\begin{equation}\label{eq:fifteenten}
+\begin{split}
+\uX + \uY & =
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1N}\\
+X_{21} & X_{22} & \dots & X_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1} & X_{M2} & \dots & X_{MN}\\
+\end{pmatrix} +
+\begin{pmatrix}
+Y_{11} & Y_{12} & \dots & Y_{1N}\\
+Y_{21} & Y_{22} & \dots & Y_{2N}\\
+\dots & \dots & \dots & \dots\\
+Y_{M1} & Y_{M2} & \dots & Y_{MN}\\
+\end{pmatrix} \\
+& =
+\begin{pmatrix}
+X_{11}+Y_{11} & X_{12}+Y_{12} & \dots & X_{1N}+Y_{1N}\\
+X_{21}+Y_{21} & X_{22}+Y_{22} & \dots & X_{2N}+Y_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1}+Y_{M1} & X_{M2}+Y_{M2} & \dots & X_{MN}+Y_{MN}\\
+\end{pmatrix}
+\end{split}
+\end{equation}
+
+\noindent Die Summe kann nur ausgef\"{u}hrt werden, wenn die Anzahl von Zeilen und Spalten der beiden Matrizen identisch ist. F\"{u}r die Addition von Matrizen gelten die in Tabelle \ref{tab:fifteenthree} aufgef\"{u}hrten Rechenregeln. Sie ergeben sich aus der komponentenweise Addition der Matrixelemente.
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r das Transponieren von Matrizen}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| wc{8.2cm} | wc{8.2cm} }
+\xrowht{15pt}
+
+\fontfamily{phv}\selectfont\textbf{Operation} & 
+\fontfamily{phv}\selectfont\textbf{Mathematische Beschreibung}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Assoziativgesetz} &
+\fontfamily{phv}\selectfont{$(\uX+\uY)+\uZ=\uX+(\uY+\uZ)$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Kommutuativgesetz} &
+\fontfamily{phv}\selectfont{$\uX+\uY=\uY+\uX$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Neutrales Element} &
+\fontfamily{phv}\selectfont{$\uX+0=\uX$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Inverses Element} &
+\fontfamily{phv}\selectfont{$\uX+(-\uX)=\uX-\uX=\uzero$}\\ \hline 
+
+\end{tabular}%
+}\bigskip
+\label{tab:fifteenthree}
+\end{table}
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Produkt von einer skalaren Gr\"{o}{\ss}e und einer Matrix}\smallskip
+
+\noindent Das Produkt skalaren Gr\"{o}{\ss}e a und einer Matrix $\uX$ ist definiert als
+
+\begin{equation}\label{eq:fifteeneleven}
+\lambda\cdot \uX =
+\begin{pmatrix}
+\lambda\cdot X_{11} & \lambda\cdot X_{12} & \dots & \lambda\cdot X_{1N}\\
+\lambda\cdot X_{21} & \lambda\cdot X_{22} & \dots & \lambda\cdot X_{2N}\\
+\dots & \dots & \dots & \dots\\
+\lambda\cdot X_{M1} & \lambda\cdot X_{M2} & \dots & \lambda\cdot X_{MN}\\
+\end{pmatrix}
+\end{equation}
+
+\noindent F\"{u}r die skalare Multiplikation gelten die in Tabelle \ref{tab:fifteenfour} aufgef\"{u}hrten Rechenregeln. Sie ergeben sich aus der komponentenweise skalaren Multiplikation der Matrixelemente.
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r die skalare Multiplikation}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| c | c |}
+\hline
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Operation}}} & 
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Mathematische Beschreibung}}}\\ \hline
+
+\parbox[c][0.5in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Distributivgesetz}}} &
+\parbox[c][0.5in][c]{3.2in}{\centering{$(\lambda +\mu)\cdot \uX=\lambda\cdot\uX+\mu\cdot\uX $\\
+$\lambda\cdot (\uX +\uY)=\lambda\cdot\uX+\lambda\cdot\uY $}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Assoziativgesetz}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$(\lambda \cdot\mu)\cdot \uX=\lambda \cdot(\mu\cdot \uX)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Transposition}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$(\lambda \cdot\uX)^{T}=\lambda \cdot \uX^{T}$}}\\ \hline
+
+\end{tabular}%
+}
+\label{tab:fifteenfour}
+\end{table}
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Produkt von Matrizen}\smallskip
+
+\noindent Das Produkt der M x N Matrix $\uX$ und der N x P Matrix $\uY$ ist die M x P Matrix $\uZ$
+
+\begin{equation}\label{eq:fifteentwelve}
+uX\cdot \uY=\uZ
+\end{equation}
+
+\noindent mit den Elementen
+
+\begin{equation}\label{eq:fifteenthirteen}
+z_{mp}= \displaystyle\sum\limits_{n=1}^{N}x_{mn}\cdot y_{np}
+\end{equation}
+
+\noindent Ausf\"{u}hrlich ergibt sich die Matrix $\uZ$ zu
+
+\begin{equation}\label{eq:fifteenfourteen}
+\begin{split}
+\uX \cdot \uY & =
+\begin{pmatrix}
+X_{11} & X_{12} & \dots & X_{1N}\\
+X_{21} & X_{22} & \dots & X_{2N}\\
+\dots & \dots & \dots & \dots\\
+X_{M1} & X_{M2} & \dots & X_{MN}\\
+\end{pmatrix} \cdot
+\begin{pmatrix}
+Y_{11} & Y_{12} & \dots & Y_{1P}\\
+Y_{21} & Y_{22} & \dots & Y_{2P}\\
+\dots & \dots & \dots & \dots\\
+Y_{N1} & Y_{N2} & \dots & Y_{NP}\\
+\end{pmatrix} \\
+& =
+\begin{pmatrix}
+\displaystyle\sum\limits_{n=1}^{N}x_{1n}\cdot y_{n1} & \displaystyle\sum\limits_{n=1}^{N}x_{1n}\cdot y_{n2} & \dots & \displaystyle\sum\limits_{n=1}^{N}x_{1n}\cdot y_{nP}\\
+\displaystyle\sum\limits_{n=1}^{N}x_{2n}\cdot y_{n1} &
+\displaystyle\sum\limits_{n=1}^{N}x_{2n}\cdot y_{n2} &
+\dots & \displaystyle\sum\limits_{n=1}^{N}x_{2n}\cdot y_{nP}\\
+\dots & \dots & \dots & \dots\\
+\displaystyle\sum\limits_{n=1}^{N}x_{Mn}\cdot y_{n1} &
+\displaystyle\sum\limits_{n=1}^{N}x_{Mn}\cdot y_{n2} &
+\dots & \displaystyle\sum\limits_{n=1}^{N}x_{Mn}\cdot y_{nP}\\
+\end{pmatrix} =
+\begin{pmatrix}
+Z_{11} & Z_{12} & \dots & Z_{1P}\\
+Z_{21} & Z_{22} & \dots & Z_{2P}\\
+\dots & \dots & \dots & \dots\\
+Z_{M1} & Z_{M2} & \dots & Z_{MP}\\
+\end{pmatrix} = \uZ
+\end{split}
+\end{equation}
+
+\noindent Die Produkt der Matrizen kann nur ausgef\"{u}hrt werden, wenn die Anzahl von Spalten der ersten Matrix mit der Anzahl von Zeilen der zweiten Matrix identisch ist. F\"{u}r die Addition von Matrizen gelten die in Tabelle \ref{tab:fifteenthree} aufgef\"{u}hrten Rechenregeln. Sie ergeben sich aus der komponentenweise Addition der Matrixelemente.
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r die Addition von Matrizen}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| wc{8.2cm} | wc{8.2cm} }
+\xrowht{15pt}
+
+\fontfamily{phv}\selectfont\textbf{Operation} & 
+\fontfamily{phv}\selectfont\textbf{Mathematische Beschreibung}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Distributivgesetz} &
+\fontfamily{phv}\selectfont{$(\uX+\uY)\cdot\uZ=\uX\cdot\uZ+\uY\cdot\uZ$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Assoziativgesetz} &
+\fontfamily{phv}\selectfont{$(\uX\cdot\uY)\cdot\uZ=\uX\cdot(\uY+\uZ)$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Neutrales Element} &
+\fontfamily{phv}\selectfont{$\uX\cdot\underbar{I}=\uX$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Transposition} &
+\fontfamily{phv}\selectfont{$(\uX\cdot\uY)^{T}=\uX^{T}\cdot\uY^{T}$}\\ \hline 
+
+\end{tabular}%
+}\bigskip
+\label{tab:fifteenfive}
+\end{table}
+
+\noindent Das Produkt von Matrizen ist nicht kommutativ, auch nicht bei quadratischen Matrizen gleicher Gr\"{o}{\ss}e.
+
+\clearpage
+
+\subsubsection{Kenngr\"{o}{\ss}en von Matrizen}
+
+\noindent F\"{u}r das L\"{o}sen von linearen Gleichungsssystemen sind einige Kenngr\"{o}{\ss}en von Matrizen von Bedeutung.\bigskip
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Lineare Abh\"{a}ngigkeit von Spalten und Zeilenvektoren}\smallskip
+
+\noindent Die Spaltenvektoren eine Matrix $X_{1}, \dots X_{N}$ sind linaer unabh\"{a}ngig, wenn f\"{u}r jede Linearkombination der Vektoren die Gleichung 
+
+\begin{equation}\label{eq:fifteenfifteen}
+b_{1}\cdot X_{1}+b_{2}\cdot X_{2}+b_{3}\cdot X_{3}+\dots +b_{N}\cdot X_{N}=0
+\end{equation}
+
+\noindent nur f\"{u}r 
+
+\begin{equation}\label{eq:fifteensixteen}
+b_{1}=b_{2}=b_{3}=\dots =b_{N}=0
+\end{equation}
+
+\noindent erf\"{u}llt ist.\bigskip
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Rang einer Matrix}\smallskip
+
+\noindent Die maximale Anzahl unabh\"{a}ngiger Spaltenvektoren einer M x N Matrix hei{\ss}t Spaltenrang der Matrix $rgs(\uX)$. Die maximale Anzahl unabh\"{a}ngiger Zeilenvektoren einer M x N Matrix hei{\ss}t Zeilenrang der Matrix $rgz(\uX)$. Spaltenrang und Zeilenrang eienr Matrix sind gleich gro{\ss}. Sie werden als Rang $rg(\uX)$ der Matrix $\uX$ bezeichnet.
+
+\begin{equation}\label{eq:fifteenseventeen}
+rg(\uX)=rg(\uX)=rg(\uX)\leq min(N,M)
+\end{equation}
+
+\noindent F\"{u}r den Rang einer Matrix gelten die in Tabelle \ref{tab:fifteensix} zusammengefassten Rechenregeln.
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r den Rang von Matrizen}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| wc{8.2cm} | wc{8.2cm} }
+\xrowht{15pt}
+
+\fontfamily{phv}\selectfont\textbf{Operation} & 
+\fontfamily{phv}\selectfont\textbf{Mathematische Beschreibung}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Negative Matrix} &
+\fontfamily{phv}\selectfont{$rg(\uX)=rg(-\uX)$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Transponierte Matrix} &
+\fontfamily{phv}\selectfont{$rg(\uX)=rg(\uX)^{T}$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Rang der Summe zweier Matrizen} &
+\fontfamily{phv}\selectfont{$rg(\uX)-rg(\uY)\leq rg(\uX+\uY)\leq rg(\uX)+rg(\uY)$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Rang des Produktes zweier Matrizen} &
+\fontfamily{phv}\selectfont{$rg(\uX\cdot\uY)\leq min\left(rg(\uX),rg(\uY) \right)$}\\ \hline \xrowht{20pt}
+
+\fontfamily{phv}\selectfont{Rang der Einheitsmatrix N x N} &
+\fontfamily{phv}\selectfont{$rg(\underline{I})=N$}\\ \hline
+
+\end{tabular}%
+}\bigskip
+\label{tab:fifteensix}
+\end{table}
+
+\clearpage
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Inverse einer quadratischen Matrix}\smallskip
+
+\noindent Die Matrix $\uX$ sei eine N x N Matrix. Die Matrix $\uX^{-1}$ ist die Inverse zur Matrix $\uX$, wenn die Beziehung
+
+\begin{equation}\label{eq:fifteeneighteen}
+\uX\cdot\uX^{-1}=\uX^{-1}\cdot\uX=\underbar{I}
+\end{equation}
+
+\noindent gilt. Die Matrix $\uX$ ist genau dann invertierbar, wenn f\"{u}r den Rang der Matrix $rg(\uX)$ der Anzahl von Spaltenvektoren N entspricht.
+
+\begin{equation}\label{eq:fifteennineteen}
+rg(\uX)=N
+\end{equation}
+
+\noindent Falls die Inverse existiert, ist sie eindeutig. Weist die Matrix $\uX$ den Rang $rg(\uX) = N$ auf, besitzt sie einen vollen Rang und wird als regul\"{a}r bezeichnet. Ist der Rang der Matrix $\uX$ kleiner als die Anzahl der Spaltenvektoren N, wird sie als singul\"{a}re Matrix bezeichnet.\bigskip
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Determinante einer Matrix}\smallskip
+
+\noindent Die Determinante $det(\uX)$ einer quadratischen Matrix $\uX$ ist f\"{u}r die L\"{o}sung von linearen Gleichungssystem und die Berechnung von der Inversen eienr Matrix von Bedeutung. Die Determinante einer 2 x 2 Matrix berechnet sich zu
+
+\begin{equation}\label{eq:fifteentwenty}
+det(\uX)=det
+\begin{pmatrix}
+x_{11} & x_{12}\\
+x_{21} & x_{22}\\
+\end{pmatrix} =
+x_{11} \cdot x_{22}-x_{12} \cdot x_{21}
+\end{equation}
+
+\noindent F\"{u}r eine 3 x 3 Matrix ergibt sich die Detrminante aus
+
+\begin{equation}\label{eq:fifteentwentyone}
+\begin{split}
+det(\uX) & =det
+\begin{pmatrix}
+x_{11} & x_{12} & x_{13}\\
+x_{21} & x_{22} & x_{23}\\
+x_{31} & x_{32} & x_{33}\\
+\end{pmatrix}\\
+&=
+x_{11}\cdot x_{22}\cdot x_{33}+x_{12}\cdot x_{23}\cdot x_{31}+x_{13}\cdot x_{21}\cdot x_{32}-x_{13}\cdot x_{22}\cdot x_{31}-x_{12}\cdot x_{21}\cdot x_{33}-x_{11}\cdot x_{23}\cdot x_{32}
+\end{split}
+\end{equation}
+
+\noindent Die Determinante einer quadratischen Matrix mit $N > 3$ wird \"{u}ber die Entwicklung nach der n-ten Spalte
+
+\begin{equation}\label{eq:fifteentwentytwo}
+det(\uX) = \displaystyle\sum\limits_{n=1}^{N}(-1)^{n+m}\cdot x_{mn}\cdot det(\uX_{mn})
+\end{equation}
+
+\noindent oder m-ten Zeile 
+
+\begin{equation}\label{eq:fifteentwentythree}
+det(\uX) = \displaystyle\sum\limits_{m=1}^{N}(-1)^{n+m}\cdot x_{mn}\cdot det(\uX_{mn})
+\end{equation}
+
+\noindent berechnet. Dabei ist $\uX_{mn}$ die Teilmatrix, die durch Streichen der m-ten Zeile und der n-ten Spalte entsteht. Die Determinante einer Matrix ist eindeutig bestimmt. Die Determinante einer quadratischen N x N Matrix kann unter den in Tabelle \ref{tab:fifteenseven} zusamengefassten Bedingungen vereinfacht werden.
+
+\clearpage
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Vereinfachte Berechnung von Determinanten einer Matrix}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| c | c |}
+\hline
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Bedingung}}} & 
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Mathematische Beschreibung}}}\\ \hline
+
+\parbox[c][0.5in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Spalte oder Reihe der Matrix $\uX$ besteht nur aus Nullen}}} &
+\parbox[c][0.5in][c]{3.2in}{\centering{$det(\uX)=0$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Matrix $\uX$ besteht aus zwei identischen Zeilen oder zwei identischen Spalten}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX)=0$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Marix $\uX$ besitzt Dreiecksform}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX)=x_{11}\cdot x_{22}\cdot \dots \cdot x_{NN}$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Marix $\uX$ ist die Einheitsmatrix $\uX=\underbar{I}$}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX)=det(\underbar{I})=1$}}\\ \hline
+
+\end{tabular}%
+}
+\label{tab:fifteenseven}
+\end{table}
+
+\noindent Au{\ss}erdem gelten f\"{u}r die Berechnung von Determinanten einer Matrix die in Tabelle \ref{tab:fifteeneight} zusammengestellten Rechenregeln.
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r  die Determinante einer Marix}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| c | c |}
+\hline
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Bedingung}}} & 
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Mathematische Beschreibung}}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Transponierte Matrix}}} &
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX^{T})=det(\uX)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Multiplikation mit einem Skalar $\lambda$}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\lambda\cdot\uX^{T})=\lambda^{N}\cdot det(\uX)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Zusammenhang zwischen Rang und Determinante}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX)\neq 0$ äquivalent zu $rg(\uX)=N$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Produkt zweier Matrizen}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX\cdot\uY)=det(\uX)\cdot det(\uY)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Inverse der Matrix}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$det(\uX^{-1})=\frac{1}{det(\uX)}$}}\\ \hline
+
+\end{tabular}%
+}
+\label{tab:fifteeneight}
+\end{table}
+
+\noindent Der Zusammenhang zwischen Rang und Determinante kann zum Nachweis der Invertierbarkeit einer Matrix $\uX$ verwendet werden. Ist die Determinante der Matrix von null verschieden ($det(\uX) \neq 0$), ist der Rang der Matrix so gro{\ss} wie die Anzahl der Spaltenvektoren N $(rg(\uX) = N )$ und damit invertierbar. Ist die Determinante null $(det(\uX) = 0)$, ist die Matrix nicht invertierbar.\newline
+
+\noindent Die Determinante einer Matrix ist das Produkt ihrer Eigenwerte. \bigskip
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Spur einer Matrix}\smallskip
+
+\noindent Die Matrix \underbar{X} sei eine N x N Matrix. Die Summe aller Diagonalelemente der Matrix wird als Spur der Matrix bezeichnet.
+
+\begin{equation}\label{eq:fifteentwentyfour}
+sp(\uX) = \displaystyle\sum\limits_{n=1}^{N} x_{nn}
+\end{equation}
+
+\noindent F\"{u}r die Berechnung der Spur einer Matrix gelten die in Tabelle \ref{tab:fifteennine} zusammengestellten Rechenregeln.
+
+\clearpage
+
+\begin{table}[H]
+\setlength{\arrayrulewidth}{.1em}
+\caption{Rechenregeln f\"{u}r die Spur einer Marix}
+\setlength{\fboxsep}{0pt}%
+\colorbox{lightgray}{%
+\arrayrulecolor{white}%
+\begin{tabular}{| c | c |}
+\hline
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Bedingung}}} & 
+\parbox[c][0.3in][c]{3.2in}{\smallskip\centering\textbf{\fontfamily{phv}\selectfont{Mathematische Beschreibung}}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Summer zweier Matrizen}}} &
+\parbox[c][0.4in][c]{3.2in}{\centering{$sp(\uX+\uY)=sp(\uX)+sp(\uY)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Tronsponierte Matrix}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$sp(\uX^{T})=sp(\uX)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Multiplikation mit einem Skalar}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$sp(\lambda\cdot\uX)=\lambda \cdot sp(\uX)$}}\\ \hline
+
+\parbox[c][0.4in][c]{3.2in}{\centering{\fontfamily{phv}\selectfont{Produkt zweier Matrizen}}} & 
+\parbox[c][0.4in][c]{3.2in}{\centering{$sp(\uX\cdot\uY)=sp(\uY\cdot\uX)$}}\\ \hline
+
+\end{tabular}%
+}
+\label{tab:fifteennine}
+\end{table}
+
+\noindent Die Spur einer Matrix ist die Summe ihrer Eigenwerte. 
+
+\subsubsection{L\"{o}sung linearer Gleichungssysteme}
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Darstellung des Gleichungssystems in Matrix-Schreibweise}\smallskip
+
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Dreieckform des Gleichungssystems}\smallskip
+
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Bewertung der L\"{o}sbarkeit von linearen Gleichungssystemen}\smallskip
+
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Sonderfall quadratischen Koeffizientenmatrizen}\smallskip
+
+
+\fontfamily{phv}\selectfont
+\noindent\textbf{Berechnung der Inverse einer quadratischen Matrix}\smallskip
+

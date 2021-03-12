@@ -1,31 +1,28 @@
-Die Systemtheorie beschreibt Systeme unter anderem durch den Zusammenhang von Signalen am Systemeingang und - Ausgang. Dabei k\"{o}nnen Signale und Systeme von unterschiedlichster Natur sein. Ein System ist zum Beispiel ein elektrisches Netzwerk, das durch Eingangs- und Ausgangsspannung beschrieben werden kann. Ein weiteres System ist ein Regler, der den F\"{u}llstand eines Beh\"{a}lters regelt. Er besitzt ein elektrisches Eingangssignal, dass die F\"{u}llstandsh\"{o}he repr\"{a}sentiert. Mit seinem Ausgangssignal wird ein Stellwerk angesteuert, das den Zufluss in den Beh\"{a}lter steuert.
+Die Systemtheorie beschreibt Systeme unter anderem durch den Zusammenhang von Signalen am Systemeingang und - Ausgang. Dabei k\"{o}nnen Signale und Systeme von unterschiedlichster Natur sein. Ein System ist zum Beispiel ein elektrisches Netzwerk, das durch Eingangs- und Ausgangsspannung beschrieben werden kann. Ein weiteres System ist ein Regler, der den F\"{u}llstand eines Beh\"{a}lters regelt. Er besitzt ein elektrisches Eingangssignal, dass die F\"{u}llstandsh\"{o}he repr\"{a}sentiert. Mit seinem Ausgangssignal wird ein Stellwerk angesteuert, das den Zufluss in den Beh\"{a}lter steuert.\newline
 
-\noindent Signale k\"{o}nnen \"{u}ber unterschiedliche Merkmale klassifiziert werden. Aus der Einteilung in zeitkontinuierliche Signale (Teil A), zeitdiskrete Signale (Teil B) und stochastische Signale (Teil C) ergibt sich die Struktur dieser Buchreihe. Dar\"{u}ber hinaus werden andere Klassifizierungsmerkmale vorgestellt.
+\noindent Signale k\"{o}nnen \"{u}ber unterschiedliche Merkmale klassifiziert werden. Aus der Einteilung in zeitkontinuierliche Signale (Teil A), zeitdiskrete Signale (Teil B) und stochastische Signale (Teil C) ergibt sich die Struktur dieser Buchreihe. Dar\"{u}ber hinaus werden andere Klassifizierungsmerkmale vorgestellt.\newline
 
-\noindent F\"{u}r die Charakterisierung von Systemen werden Testfunktionen eingesetzt werden, die eine besonders anschauliche Interpretation des Ausgangssignals erm\"{o}glichen. Dazu geh\"{o}ren Sprungfunktionen, Rampenfunktionen und Impulsfunktionen. Diese Funktionen werden diskutiert und das Rechnen mit diesen Testfunktionen an Beispielen erl\"{a}utert. In einem Experiment am Ende des Kapitels wird der Begriff der Impulsfunktion verdeutlicht.
+\noindent F\"{u}r die Charakterisierung von Systemen werden Testfunktionen eingesetzt werden, die eine besonders anschauliche Interpretation des Ausgangssignals erm\"{o}glichen. Dazu geh\"{o}ren Sprungfunktionen, Rampenfunktionen und Impulsfunktionen. Diese Funktionen werden diskutiert und das Rechnen mit diesen Testfunktionen an Beispielen erl\"{a}utert. In einem Experiment am Ende des Kapitels wird der Begriff der Impulsfunktion verdeutlicht.\newline
 
-\noindent Sogenannte lineare, zeitinvariante Systeme zeichnen sich dadurch aus, dass f\"{u}r sie das sogenannte Superpositionsprinzip gilt. Kann ein Eingangssignal aus einer Linearkombination bekannter Signale beschrieben werden, ergibt sich das Ausgangssignal aus derselben Linearkombination der zugeh\"{o}rigen Ausgangssignale. Deshalb wird die Signalalgebra vorgestellt, die die Zerlegung von Signalen in elementare Signale erm\"{o}glicht.
+\noindent Sogenannte lineare, zeitinvariante Systeme zeichnen sich dadurch aus, dass f\"{u}r sie das sogenannte Superpositionsprinzip gilt. Kann ein Eingangssignal aus einer Linearkombination bekannter Signale beschrieben werden, ergibt sich das Ausgangssignal aus derselben Linearkombination der zugeh\"{o}rigen Ausgangssignale. Deshalb wird die Signalalgebra vorgestellt, die die Zerlegung von Signalen in elementare Signale erm\"{o}glicht.\newline
 
-\noindent Das Ausgangsignal oder die Reaktion eines Systems kann vielfach \"{u}ber Kosinus- und Exponentialfunktionen beschrieben werden. Beide Funktionen k\"{o}nnen zu komplexen Exponentialfunktionen zusammengefasst werden. Komplexe Exponentialfunktionen werden dazu verwendet, das Einschwingverhalten von Systemen effizient zu beschreiben. Das Rechnen mit komplexen Exponentialfunktionen wird eingef\"{u}hrt und ge\"{u}bt.
+\noindent Das Ausgangsignal oder die Reaktion eines Systems kann vielfach \"{u}ber Kosinus- und Exponentialfunktionen beschrieben werden. Beide Funktionen k\"{o}nnen zu komplexen Exponentialfunktionen zusammengefasst werden. Komplexe Exponentialfunktionen werden dazu verwendet, das Einschwingverhalten von Systemen effizient zu beschreiben. Das Rechnen mit komplexen Exponentialfunktionen wird eingef\"{u}hrt und ge\"{u}bt.\newline
 
 \noindent Werden physikalische Gr\"{o}{\ss}en auf Einheiten und typische Gr\"{o}{\ss}enordnungen bezogen, ergeben sich \"{u}bersichtlichere Zahlenwerte und vereinfachte Darstellungen. Im letzten Teil des Kapitels wird gezeigt, wie Signale normiert werden. 
 
-
-\subsection{ Klassen von Signalen}
-
+\subsection{Klassen von Signalen}
 
 \subsubsection{ Kontinuierliche und diskrete Signale}
-Signale lassen sich zun\"{a}chst hinsichtlich ihres Verlaufes in kontinuierliche und diskrete Signale einteilen. So ist zum Beispiel der Spannungsverlauf an einem Mikrofon ein zeitkontinuierliches Signal, das zu jedem beliebigen Zeitpunkt t definiert ist. Sein Wertevorrat ist ebenfalls kontinuierlich, sodass von einem zeitkontinuierlichen und wertkontinuierlichen Signal gesprochen wird.
+Signale lassen sich zun\"{a}chst hinsichtlich ihres Verlaufes in kontinuierliche und diskrete Signale einteilen. So ist zum Beispiel der Spannungsverlauf an einem Mikrofon ein zeitkontinuierliches Signal, das zu jedem beliebigen Zeitpunkt t definiert ist. Sein Wertevorrat ist ebenfalls kontinuierlich, sodass von einem zeitkontinuierlichen und wertkontinuierlichen Signal gesprochen wird.\newline
 
-\noindent Wird dieselbe analoge Spannung mit einem Analog-Digital-Wandler digitalisiert, so wird das Signal zu definierten Zeitpunkten einer endlichen Anzahl von Quantisierungsstufen zugeordnet. Das Signal wird also in zweierlei Hinsicht diskretisiert. Nach der Digitalisierung liegt ein zeit- und wertdiskretes Signal vor.
+\noindent Wird dieselbe analoge Spannung mit einem Analog-Digital-Wandler digitalisiert, so wird das Signal zu definierten Zeitpunkten einer endlichen Anzahl von Quantisierungsstufen zugeordnet. Das Signal wird also in zweierlei Hinsicht diskretisiert. Nach der Digitalisierung liegt ein zeit- und wertdiskretes Signal vor.\newline
 
-\noindent Ein Beispiel f\"{u}r ein zeitdiskretes und wertkontinuierliches Signal ist die Messung einer wertkontinuierlichen Gr\"{o}{\ss}e, die jeden Tag zu einer bestimmten Uhrzeit durchgef\"{u}hrt wird. Die Messgr\"{o}{\ss}e ist kontinuierlich, aber sie ist zwischen den einzelnen Messzeitpunkten nicht bekannt.
+\noindent Ein Beispiel f\"{u}r ein zeitdiskretes und wertkontinuierliches Signal ist die Messung einer wertkontinuierlichen Gr\"{o}{\ss}e, die jeden Tag zu einer bestimmten Uhrzeit durchgef\"{u}hrt wird. Die Messgr\"{o}{\ss}e ist kontinuierlich, aber sie ist zwischen den einzelnen Messzeitpunkten nicht bekannt.\newline
 
 \noindent Ein wertediskretes und zeitkontinuierliches Signal ist zum Beispiel der Lagerbestand eines Bauteils. Es k\"{o}nnen nur ganze Bauelemente dem Lager entnommen werden, sodass der Lagerbestand wertediskret ist. Es ist aber zu jedem Zeitpunkt bekannt, wie viele Bauelemente eines bestimmten Typs vorhanden sind. Das Signal ist zeitkontinuierlich.\newline
 
 \noindent Bild \ref{fig:DiskreKontinuerlich} stellt ein Signal in allen m\"{o}glichen Kombinationen der Diskretisierung in Zeit und Wertevorrat an einem Signal dar. 
 
-\clearpage
 \begin{figure}[H]
   \includegraphics[width=1.0\textwidth]{Kapitel1/Bilder/image1.eps}
   \caption{Darstellung wertkontinuierlicher und wertdiskreter Signale in zeitkontinuierlicher und zeitdiskreter Form}
